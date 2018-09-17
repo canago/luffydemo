@@ -1,0 +1,45 @@
+{% extends 'rbac/base.html' %}
+{% block body %}
+
+    <div id="container" class="effect mainnav-lg">
+
+        {% include 'rbac/navbar.html' %}
+        <div class="boxed">
+
+            <div id="content-container">
+                    {% include "rbac/page-title.html" %}
+
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ol>
+
+                <!--Page content-->
+                <!--===================================================-->
+                {% block page-content %}
+
+                {% endblock %}
+
+                <!--===================================================-->
+                <!--End page content-->
+
+
+            </div>
+
+
+
+            {% include "rbac/aside-container.html" %}
+            {% include "rbac/mainnav-container.html" %}
+
+        </div>
+
+        {% include 'rbac/footer.html' %}
+
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+
+    </div>
+
+{% endblock %}

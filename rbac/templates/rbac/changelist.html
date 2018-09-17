@@ -1,0 +1,39 @@
+{% extends 'rbac/container.html' %}
+{% load stark %}
+{% block page-content %}
+    <h1>用户列表</h1>
+    {{ cl.add_btn }}
+    {% if cl.search_list %}
+        <div style="float: right;">
+            <form method="GET" class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="q" value="{{ cl.q }}" placeholder="关键字搜索">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="pli-magnifi-glass" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    {% endif %}
+    <form action="">
+        {% csrf_token %}
+        {% if cl.action_list %}
+            <div class="form-group">
+                <select name="action" class="form" style="min-width: 200px;">
+                    <option>请选择功能</option>
+                    {% for item in cl.action_list %}
+                        <option value="{{ item.name }}">{{ item.text }}</option>
+                    {% endfor %}
+                </select>
+                <input class="btn btn-primary" type="submit" value="执行">
+            </div>
+        {% endif %}
+        {% table cl %}
+    </form>
+    <ul class="pagination">
+        {{ cl.page.page_html|safe }}
+    </ul>
+
+{% endblock %}
+
